@@ -103,7 +103,7 @@ export const Configurator: FC = () => {
       },
     },
     powerbankModule: {
-      description: ["123", "123"],
+      description: ["Позволяет зарядить до 3 устр-ств одновременно", "Выдаваемая мощность до 5 Ватт"],
       price: 15000,
       config: {
         usb: {
