@@ -17,13 +17,13 @@ export const MainPage: FC = () => {
   return (
     <div>
       <MainItem
-        id={mainItemStore.mainItems.id}
-        title={mainItemStore.mainItems.name}
-        description={mainItemStore.mainItems.description}
-        img={"/img/MainSolarPanelImg.png"}
-        weight={mainItemStore.mainItems.weight}
-        power={mainItemStore.mainItems.power}
-        size={mainItemStore.mainItems.size}
+        id={0}
+        title={""}
+        description={""}
+        img={"/img/no_photo.jpg"}
+        weight={""}
+        power={""}
+        size={""}
       />
       <Advantages
         title={"Что вы получите"}
@@ -40,7 +40,7 @@ export const MainPage: FC = () => {
         description={
           'Мы представители молодой, быстроразвивающейся компании ООО "ГелиоТрек". Основной вид деятельности направлен на создание эффективного источника энергии для подзарядки устройств.'
         }
-        imgUrl={"/img/AboutUsImg.png"}
+        imgUrl={"/img/fond.png"}
         bgUrl={"/src/assets/img/AboutUsIcon.svg"}
       />
       <FAQ title={"FAQs"} description={"Часто задаваемые вопросы"} />

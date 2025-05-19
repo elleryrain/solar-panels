@@ -1,6 +1,7 @@
-import React from "react";
+import React, { memo, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import {routes} from "@/const/routes.ts";
+import { routes } from "@/const/routes.ts";
 
 interface NavItemProps {
   name: string;
@@ -10,7 +11,7 @@ interface NavItemProps {
   imgUrl?: string;
 }
 
-const NavItemStyled = styled.a<Partial<NavItemProps>>`
+const NavItemStyled = styled(Link)<Partial<NavItemProps>>`
   display: flex;
   cursor: pointer;
   text-decoration: none;
@@ -58,29 +59,29 @@ const IsCartStyled = styled.div`
       width: 30px;
       height: 30px;
     }
-  }  
+  }
   @media (max-width: 1300px) {
     > img {
       width: 25px;
       height: 25px;
     }
-  }  
+  }
   @media (max-width: 1100px) {
     > img {
       width: 22px;
       height: 22px;
     }
-    @media (max-width: 850px) {
-      > img {
-        width: 30px;
-        height: 30px;
-      }
+  }
+  @media (max-width: 850px) {
+    > img {
+      width: 30px;
+      height: 30px;
     }
-    @media (max-width: 600px) {
-      > img {
-        width: 22px;
-        height: 22px;
-      }
+  }
+  @media (max-width: 600px) {
+    > img {
+      width: 22px;
+      height: 22px;
     }
   }
 `;
@@ -124,8 +125,8 @@ const CounterStyled = styled.span`
   }
   @media (max-width: 1300px) {
     font-size: 20px;
-  }  
-  @media (max-width: 1300px) {
+  }
+  @media (max-width: 1100px) {
     font-size: 17px;
   }
   @media (max-width: 850px) {
@@ -139,22 +140,37 @@ const CounterStyled = styled.span`
   }
 `;
 
-export const NavItem: React.FC<NavItemProps> = ({
-  name,
-  path,
-  counter,
-  isCart,
-  imgUrl,
-}) => {
-  return (
+export const NavItem = memo(
+  ({ name, path, counter, isCart, imgUrl }: NavItemProps) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    // Обработка скролла к элементу после навигации
+    useEffect(() => {
+      if (location.hash) {
+        const element = document.getElementById(location.hash.replace("#", ""));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, [location]);
+
+    const handleCartClick = () => {
+      navigate(routes.cart);
+    };
+
+    return (
       <NavItemContainer isCart={isCart}>
-        <NavItemStyled href={path} isCart={isCart}>{name}</NavItemStyled>
+        <NavItemStyled to={path} isCart={isCart}>
+          {name}
+        </NavItemStyled>
         {isCart && (
-            <IsCartStyled onClick={() => window.location.href = routes.cart}>
-              <CounterStyled> {counter} </CounterStyled>
-              <img src={imgUrl} alt="" />
-            </IsCartStyled>
+          <IsCartStyled onClick={handleCartClick}>
+            <CounterStyled>{counter}</CounterStyled>
+            <img src={imgUrl} alt="Cart icon" />
+          </IsCartStyled>
         )}
       </NavItemContainer>
-  );
-};
+    );
+  }
+);
