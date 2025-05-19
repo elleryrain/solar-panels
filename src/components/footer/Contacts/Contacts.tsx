@@ -21,11 +21,11 @@ const contactItems: IContactItem[] = [
     Icon: Phone,
   },
   {
-    name: "solarpanels@yandex.ru",
+    name: "kostyatulupoff@yandex.ru",
     Icon: Email,
   },
   {
-    name: "Тамбовская об-ть, мкр-н Тамбовский, г.п. Новолядинский Поссовет, р.п. Новая Ляда, ул. Будённого д. 43, кв. 1",
+    name: "Тамбовская об-ть, мкр-н Тамбовский, г.п. Новолядинский Поссовет, р.п. Новая Ляда, ул. Будённого д. 22, кв. 1",
     Icon: Address,
   },
 ];
