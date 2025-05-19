@@ -17,7 +17,7 @@ interface IContactItem {
 
 const contactItems: IContactItem[] = [
   {
-    name: "+7 (000) 000 00 00",
+    name: "8 (902) 729-87-91",
     Icon: Phone,
   },
   {
